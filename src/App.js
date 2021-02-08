@@ -4,9 +4,19 @@ import { Icon } from "leaflet";
 import * as pharmData from "./data/pharmacies.json";
 import "./App.css";
 
-export const icon = new Icon({
-    iconUrl: "/skateboarding.svg",
-    iconSize: [25, 25],
+export const nine = new Icon({
+    iconUrl: "911.png",
+    iconSize: [50, 50],
+});
+
+export const oc = new Icon({
+    iconUrl: "OC.png",
+    iconSize: [50, 50],
+});
+
+export const nc = new Icon({
+    iconUrl: "NC.png",
+    iconSize: [50, 50],
 });
 
 export default function App() {
@@ -59,7 +69,7 @@ export default function App() {
                     //     console.log("yes");
                     //     setActivePark(park);
                     // }}
-                    // icon={icon}
+                    icon={pharm.description === "Аптечная сеть 911" ? nine : pharm.description === "Аптека оптовых цен" ? oc : nc}
                 >
                     <Popup
                         position={[
@@ -73,6 +83,7 @@ export default function App() {
                     >
                         <div>
                             <h2>{pharm.name}</h2>
+                            <h2>{pharm.description}</h2>
                             <p>{pharm.address}</p>
                         </div>
                     </Popup>
