@@ -11,3 +11,29 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.search-pharm-container {
+  display: flex;
+  z-index: 3;
+  margin: auto;
+  padding: auto;
+  width: 100%;
+  height: 150px;
+  align-items: center;
+  align-content: center;
+  text-align: center;
+
+}
+input {
+  z-index: 3;
+  margin: auto;
+  padding: auto;
+  text-align: center;
+  font-weight: bold;
+  color: black;
+  width: 100%;
+  height: 30px;
+  outline: none;
+  text-decoration: none;
+  border: none;
+}
