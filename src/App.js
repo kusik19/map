@@ -40,27 +40,13 @@ export default function App() {
                       pharm.description
                           .toLowerCase()
                           .includes(text.toLowerCase()) ||
-                          pharm.brandnameUA
+                      pharm.brandnameUA
                           .toLowerCase()
                           .includes(text.toLowerCase()) ||
-                          pharm.brandnameRU
+                      pharm.brandnameRU
                           .toLowerCase()
                           .includes(text.toLowerCase()) ||
-                          pharm.cityNameUA
-                          .toLowerCase()
-                          .includes(text.toLowerCase()) ||
-                          pharm.cityNameRU
-                          .toLowerCase()
-                          .includes(text.toLowerCase()) ||
-                          pharm.streetNameRU
-                          .toLowerCase()
-                          .includes(text.toLowerCase()) ||
-                          pharm.streetNameRU
-                          .toLowerCase()
-                          .includes(text.toLowerCase()) ||
-                          pharm.orgName
-                          .toLowerCase()
-                          .includes(text.toLowerCase())
+                      pharm.orgName.toLowerCase().includes(text.toLowerCase())
               );
 
     return (
