@@ -1,6 +1,13 @@
 import React from "react";
 // import Search from "./Search";
-import { Map, Marker, Popup, TileLayer } from "react-leaflet";
+import {
+    Map,
+    Marker,
+    Popup,
+    TileLayer,
+    LayersControl,
+    LayerGroup,
+} from "react-leaflet";
 import { Icon } from "leaflet";
 import * as pharmData from "./data/pharmacies.json";
 import Search from "react-leaflet-search";
@@ -50,6 +57,11 @@ export default function App() {
                       pharm.orgName.toLowerCase().includes(text.toLowerCase())
               );
 
+    const ninePharmac = pharmData.data.filter(pharm => pharm.description === "Аптечная сеть 911")
+    const optPharmac = pharmData.data.filter(pharm => pharm.description === "Аптека оптовых цен")
+    const nizkiePharmac = pharmData.data.filter(pharm => pharm.description === "Аптека низкие цены №1")
+
+
     return (
         <>
             {/* <Search setText={handleText} /> */}
@@ -58,27 +70,104 @@ export default function App() {
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                     attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 />
-                {filteredPharm.map((pharm) => (
-                    <Marker
-                        key={pharm.id}
-                        position={[pharm.latitude, pharm.longitude]}
-                        icon={
-                            pharm.description === "Аптечная сеть 911"
-                                ? nine
-                                : pharm.description === "Аптека оптовых цен"
-                                ? oc
-                                : nc
-                        }
-                    >
-                        <Popup position={[pharm.latitude, pharm.longitude]}>
-                            <div>
-                                <h2>{pharm.name}</h2>
-                                <h2>{pharm.description}</h2>
-                                <p>{pharm.address}</p>
-                            </div>
-                        </Popup>
-                    </Marker>
-                ))}
+                <LayersControl position="topleft">
+                    <LayersControl.Overlay name="Аптечная сеть 911">
+                        <LayerGroup>
+                            {ninePharmac.map((pharm) => (
+                                <Marker
+                                    key={pharm.id}
+                                    position={[pharm.latitude, pharm.longitude]}
+                                    icon={
+                                        pharm.description ===
+                                        "Аптечная сеть 911"
+                                            ? nine
+                                            : pharm.description ===
+                                              "Аптека оптовых цен"
+                                            ? oc
+                                            : nc
+                                    }
+                                >
+                                    <Popup
+                                        position={[
+                                            pharm.latitude,
+                                            pharm.longitude,
+                                        ]}
+                                    >
+                                        <div>
+                                            <h2>{pharm.name}</h2>
+                                            <h2>{pharm.description}</h2>
+                                            <p>{pharm.address}</p>
+                                        </div>
+                                    </Popup>
+                                </Marker>
+                            ))}
+                        </LayerGroup>
+                    </LayersControl.Overlay>
+                    <LayersControl.Overlay name="Аптека оптовых цен">
+                        <LayerGroup>
+                            {optPharmac.map((pharm) => (
+                                <Marker
+                                    key={pharm.id}
+                                    position={[pharm.latitude, pharm.longitude]}
+                                    icon={
+                                        pharm.description ===
+                                        "Аптечная сеть 911"
+                                            ? nine
+                                            : pharm.description ===
+                                              "Аптека оптовых цен"
+                                            ? oc
+                                            : nc
+                                    }
+                                >
+                                    <Popup
+                                        position={[
+                                            pharm.latitude,
+                                            pharm.longitude,
+                                        ]}
+                                    >
+                                        <div>
+                                            <h2>{pharm.name}</h2>
+                                            <h2>{pharm.description}</h2>
+                                            <p>{pharm.address}</p>
+                                        </div>
+                                    </Popup>
+                                </Marker>
+                            ))}
+                        </LayerGroup>
+                    </LayersControl.Overlay>
+                    <LayersControl.Overlay name="Аптека низкие цены №1">
+                        <LayerGroup>
+                            {nizkiePharmac.map((pharm) => (
+                                <Marker
+                                    key={pharm.id}
+                                    position={[pharm.latitude, pharm.longitude]}
+                                    icon={
+                                        pharm.description ===
+                                        "Аптечная сеть 911"
+                                            ? nine
+                                            : pharm.description ===
+                                              "Аптека оптовых цен"
+                                            ? oc
+                                            : nc
+                                    }
+                                >
+                                    <Popup
+                                        position={[
+                                            pharm.latitude,
+                                            pharm.longitude,
+                                        ]}
+                                    >
+                                        <div>
+                                            <h2>{pharm.name}</h2>
+                                            <h2>{pharm.description}</h2>
+                                            <p>{pharm.address}</p>
+                                        </div>
+                                    </Popup>
+                                </Marker>
+                            ))}
+                        </LayerGroup>
+                    </LayersControl.Overlay>
+                </LayersControl>
                 <Search
                     inputPlaceholder="Введите адресс"
                     position="topleft"
